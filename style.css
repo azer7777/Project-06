@@ -45,11 +45,7 @@ a:hover {
 
 
 
-.image1 {
-    width: 100%;
-    height: 500px;
-    text-align: center;   
-}
+
 .title-one {
     position: absolute; 
     font-size: 80px;
@@ -75,6 +71,8 @@ a:hover {
     color: blanchedalmond;
     font-style: italic;
 }
+
+
 
 
 
