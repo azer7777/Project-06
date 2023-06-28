@@ -11,7 +11,7 @@ function getBestMovieUrl(data){
     
 }
 function loadBestMovieInfo(bestMovieUrl){
-    document.getElementById("bestmovie_image").innerHTML = "<img src=" + bestMovieUrl.image_url + "alt='image best movie ' height='500' width='100%'/>";
+    document.getElementById("bestmovie_image").innerHTML = "<img src=" + bestMovieUrl.image_url + "alt='image best movie ' height='450' width='100%'/>";
     document.getElementById("title-one").innerHTML = bestMovieUrl.title;
     document.getElementById("description").innerHTML = bestMovieUrl.description;
 }

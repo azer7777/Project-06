@@ -47,6 +47,7 @@ a:hover {
     position: absolute; 
     font-size: 80px;
     color: gold;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
     left: 10px;
     top:200px;
 }
@@ -58,21 +59,22 @@ button {
     height:70px;
     font-size: 18px;
     border-radius: 8px;
-    border: white;
-    background-color: white ;    
+    color: #fff;
+    border: rgb(231, 73, 73);
+    background-color: rgb(231, 73, 73) ;    
     left: 115px;
     top: 320px; 
 }
 button:hover {
     text-transform:capitalize;
-    color: rgb(147, 164, 202);
+    color: rgb(1, 10, 29);
 }
 
 #description {
     position: absolute; 
-    font-size: 30px;
-    color: rgb(234, 202, 153);
-    font-family: Arial, Helvetica, sans-serif;
+    font-size: 30px;  
+    color:#fff;
+    font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
     left: 10px;
     top:410px;
 }
