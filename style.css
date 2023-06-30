@@ -86,7 +86,7 @@ p {
 
 
 
-
+* {box-sizing: border-box}
 .bestRatedMovies, .familyMovies {display: none;}
 img {vertical-align: middle;}
 

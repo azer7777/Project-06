@@ -17,7 +17,7 @@ let ratingSortedMoviesUrl = "http://localhost:8000/api/v1/titles/?sort_by=-votes
 let familyMoviesUrl = "http://localhost:8000/api/v1/titles/?sort_by=-votes,-imdb_score&genre=animation"
 getData(ratingSortedMoviesUrl, getBestMovieUrl, loadBestMovieInfo, 0);
 getData(ratingSortedMoviesUrl, getBestMovieUrl, loadInfoToModal, 0);
-for (let i=0; i<3; i++){
+for (let i=0; i<15; i++){
     getData(ratingSortedMoviesUrl, getBestMovieUrl, loadMoviesImg, i, i + 1);
 }
 
