@@ -1,12 +1,12 @@
 
-async function getData(anyUrl, loadData, loadMovieInfo, index){
+async function getData(anyUrl, loadData, loadMovieInfo, index, n){
     let response = await fetch(anyUrl);
     let data = await response.json();
-    loadData(data, loadMovieInfo, index);
+    loadData(data, loadMovieInfo, index, n);
 }
-function getBestMovieUrl(data, loadMovieInfo, index){
+function getBestMovieUrl(data, loadMovieInfo, index, n){
     let bestMovieUrl = data.results[index].url;
-    getData(bestMovieUrl, loadMovieInfo);   
+    getData(bestMovieUrl, loadMovieInfo, index, n);   
 }
 function loadBestMovieInfo(dataMovie){
     document.getElementById("bestmovieImage").innerHTML = "<img src=" + dataMovie.image_url + "alt='image best movie ' height='450' width='100%'/>";
@@ -17,8 +17,8 @@ let ratingSortedMoviesUrl = "http://localhost:8000/api/v1/titles/?sort_by=-votes
 let familyMoviesUrl = "http://localhost:8000/api/v1/titles/?sort_by=-votes,-imdb_score&genre=animation"
 getData(ratingSortedMoviesUrl, getBestMovieUrl, loadBestMovieInfo, 0);
 getData(ratingSortedMoviesUrl, getBestMovieUrl, loadInfoToModal, 0);
-for (let i=1; i<7; i++){
-    getData(ratingSortedMoviesUrl, getBestMovieUrl, loadMoviesImg, i);
+for (let i=0; i<3; i++){
+    getData(ratingSortedMoviesUrl, getBestMovieUrl, loadMoviesImg, i, i + 1);
 }
 
 function loadInfoToModal(dataMovie){
@@ -36,7 +36,7 @@ function loadInfoToModal(dataMovie){
     document.getElementById("longDescription").innerHTML = "Long description : " + dataMovie.long_description;
 }
 
-function loadMoviesImg(dataMovie){
+function loadMoviesImg(dataMovie, n){
     document.getElementById("rated_movie_img_" + n).innerHTML = "<img src=" + dataMovie.image_url + "alt='image movie '/>";
     
 }
