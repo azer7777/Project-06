@@ -87,12 +87,12 @@ p {
 
 
 * {box-sizing: border-box}
-.bestRatedMovies, .familyMovies {display: none;}
+.mySlides1, .familyMovies {display: none;text-align: center;}
 img {vertical-align: middle;}
 
 /* Slideshow container */
 .slideshow-container {
-  max-width: 40%;
+  max-width: 60%;
   position: relative;
   margin: auto;
   background-color: #000;
