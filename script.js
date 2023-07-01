@@ -17,12 +17,8 @@ let ratingSortedMoviesUrl = "http://localhost:8000/api/v1/titles/?sort_by=-votes
 let familyMoviesUrl = "http://localhost:8000/api/v1/titles/?sort_by=-votes,-imdb_score&genre=animation"
 getData(ratingSortedMoviesUrl, getBestMovieUrl, loadBestMovieInfo, 0);
 getData(ratingSortedMoviesUrl, getBestMovieUrl, loadInfoToModal, 0);
-for (let i=1; i<5; i++){
-    if (i == 5){
-      ratingSortedMoviesUrl = "http://localhost:8000/api/v1/titles/?page=2&sort_by=-votes%2C-imdb_score"
-    }
-    getData(ratingSortedMoviesUrl, getBestMovieUrl, loadMoviesImg1, i);
-}
+
+
 ratingSortedMoviesUrl = "http://localhost:8000/api/v1/titles/?sort_by=-votes,-imdb_score"
 let n = 2
 for (let i=0; i<4; i++){
@@ -33,16 +29,8 @@ for (let i=0; i<4; i++){
     getData(ratingSortedMoviesUrl, getBestMovieUrl, loadMoviesImg2, n);
     n ++
 }
-ratingSortedMoviesUrl = "http://localhost:8000/api/v1/titles/?sort_by=-votes,-imdb_score"
-n = 3
-for (let i=0; i<4; i++){
-    if (n == 5){
-      ratingSortedMoviesUrl = "http://localhost:8000/api/v1/titles/?page=2&sort_by=-votes%2C-imdb_score"
-      n = 0
-    }
-    getData(ratingSortedMoviesUrl, getBestMovieUrl, loadMoviesImg3, n);
-    n ++
-}
+
+
 function loadInfoToModal(dataMovie){
     document.getElementById("imageMovie").innerHTML = "<img src=" + dataMovie.image_url + "alt='image best movie '/>";
     document.getElementById("title").innerHTML = dataMovie.title;
@@ -58,12 +46,9 @@ function loadInfoToModal(dataMovie){
     document.getElementById("longDescription").innerHTML = "Long description : " + dataMovie.long_description;
 }
 
-function loadMoviesImg1(dataMovie){  
-    const sectionslideshow = document.getElementById("bestRatedMovies_1");
-    const imageElement = document.createElement("img");
-    imageElement.src = dataMovie.image_url;
-    sectionslideshow.appendChild(imageElement);
-}
+function loadMoviesImg1(dataMovie, nb){ 
+  document.getElementById("besMovieimg_" + nb).innerHTML = "<img src=" + dataMovie.image_url + "alt='movie image '/>";
+} 
 function loadMoviesImg2(dataMovie){  
     const sectionslideshow = document.getElementById("bestRatedMovies_2");
     const imageElement = document.createElement("img");
@@ -82,24 +67,120 @@ function loadMoviesImg4(dataMovie){
     imageElement.src = dataMovie.image_url;
     sectionslideshow.appendChild(imageElement);
 }
-let slideIndex = [1,1];
-let slideId = ["mySlides1", "familyMovies"]
-showSlides(1, 0);
-showSlides(1, 1);
 
-function plusSlides(n, no) {
-  showSlides(slideIndex[no] += n, no);
+
+
+
+// slideshow part
+
+let arrowPrev1 = document.querySelector('.arrow.prev1')
+let arrowNext1 = document.querySelector('.arrow.next1')
+let arrowPrev2 = document.querySelector('.arrow.prev2')
+let arrowNext2 = document.querySelector('.arrow.next2')
+let arrowPrev3 = document.querySelector('.arrow.prev3')
+let arrowNext3 = document.querySelector('.arrow.next3')
+let arrowPrev4 = document.querySelector('.arrow.prev4')
+let arrowNext4 = document.querySelector('.arrow.next4')
+
+arrowNext1.onclick = function() {
+  let className = '.card-wrapper1'
+  let arrowPrev = arrowPrev1
+  let arrowNext = arrowNext1
+  slideshow(className, arrowPrev, arrowNext)
 }
 
-function showSlides(n, no) {
-  let i;
-  let x = document.getElementsByClassName(slideId[no]);
-  if (n > x.length) {slideIndex[no] = 1}    
-  if (n < 1) {slideIndex[no] = x.length}
-  for (i = 0; i < x.length; i++) {
-     x[i].style.display = "none";  
+arrowPrev1.onclick = function() {
+  let className = '.card-wrapper1'
+  let arrowPrev = arrowPrev1
+  let arrowNext = arrowNext1
+  slideshow(className, arrowPrev, arrowNext)
+}
+
+arrowNext2.onclick = function() {
+  let className = '.card-wrapper2'
+  let arrowPrev = arrowPrev2
+  let arrowNext = arrowNext2
+  slideshow(className, arrowPrev, arrowNext)
+}
+
+arrowPrev2.onclick = function() {
+  let className = '.card-wrapper2'
+  let arrowPrev = arrowPrev2
+  let arrowNext = arrowNext2
+  slideshow(className, arrowPrev, arrowNext)
+}
+
+arrowNext3.onclick = function() {
+  let className = '.card-wrapper3'
+  let arrowPrev = arrowPrev3
+  let arrowNext = arrowNext3
+  slideshow(className, arrowPrev, arrowNext)
+}
+
+arrowPrev3.onclick = function() {
+  let className = '.card-wrapper3'
+  let arrowPrev = arrowPrev3
+  let arrowNext = arrowNext3
+  slideshow(className, arrowPrev, arrowNext)
+}
+
+arrowNext4.onclick = function() {
+  let className = '.card-wrapper4'
+  let arrowPrev = arrowPrev4
+  let arrowNext = arrowNext4
+  slideshow(className, arrowPrev, arrowNext)
+}
+
+arrowPrev4.onclick = function() {
+  let className = '.card-wrapper4'
+  let arrowPrev = arrowPrev4
+  let arrowNext = arrowNext4
+  slideshow(className, arrowPrev, arrowNext)
+}
+
+
+function  slideshow(className, arrowPrev, arrowNext){
+  let cardWrapper = document.querySelector(className)
+  let widthToScroll = cardWrapper.children[0].offsetWidth
+  let cardBounding = cardWrapper.getBoundingClientRect()
+  let cardImageAndLink = cardWrapper.querySelectorAll('img, a')
+  let currScroll = 0
+  let initPos = 0
+  let clicked = false
+
+  cardImageAndLink.forEach(item=> {
+    item.setAttribute('draggable', false)
+  })
+
+  arrowPrev.onclick = function() {
+    cardWrapper.scrollLeft -= widthToScroll
   }
-  x[slideIndex[no]-1].style.display = "block";  
+
+  arrowNext.onclick = function() {
+    cardWrapper.scrollLeft += widthToScroll
+  }
+
+  cardWrapper.onmousedown = function(e) {
+    cardWrapper.classList.add('grab')
+    initPos = e.clientX - cardBounding.left
+    currScroll = cardWrapper.scrollLeft
+    clicked = true
+  }
+
+  cardWrapper.onmousemove = function(e) {
+    if(clicked) {
+      const xPos = e.clientX - cardBounding.left
+      cardWrapper.scrollLeft = currScroll + -(xPos - initPos)
+    }
+  }
+
+  cardWrapper.onmouseup = mouseUpAndLeave
+  cardWrapper.onmouseleave = mouseUpAndLeave
+
+  function mouseUpAndLeave() {
+    cardWrapper.classList.remove('grab')
+    clicked = false
+  }
 }
 
 
@@ -107,7 +188,11 @@ function showSlides(n, no) {
 
 
 
-// Get the modal
+
+
+
+
+// modal part
 let modal = document.getElementById("myModal");
 
 // Get the button that opens the modal

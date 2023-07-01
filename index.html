@@ -3,6 +3,8 @@
 <head>
     <meta charset="utf-8">
     <title>JustStreamIt</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <script src="script.js" async></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -10,54 +12,109 @@
     
 </head>
 <body>
-<div class="menu-container">
+  <div class="menu-container">
     <div class="menu">
         <p class="logo">JustStreamIt</p>
         <a href="index.html">Home</a>
         <p>Categories</p>
 
     </div>
+  </div>
 
-</div>
-<section>
     <div id="bestmovieImage"></div>
     <h1 id="titleBestMovie"></h1>
-    <button id="myBtn">More info</button>
+    <button class="moreInfo" id="myBtn">More info</button>
     <p id="description"></p>
     <br>
+    
+    
 
 
-
-
-
-
-    <h1 style="text-align: center;">Best rated movies</h1><br>
-    <div class="slideshow-container"; style="justify-content: space-around;">
-      <div id="bestRatedMovies_1" class="mySlides1"></div>
-      <div id="bestRatedMovies_2" class="mySlides1"></div>
-      <div id="bestRatedMovies_3" class="mySlides1"></div>
-
-      <a class="prev" onclick="plusSlides(-1, 0)">&#10094;</a>
-      <a class="next" onclick="plusSlides(1, 0)">&#10095;</a>
+    <h1 style="text-align: center;">Best rated movies</h1>
+    <div class="main-wrapper">    
+      <div class="wrapper">
+          <button class="arrow prev1"><i class="ri-arrow-left-s-line"></i></button>
+          <button class="arrow next1"><i class="ri-arrow-right-s-line"></i></button>
+          <div class="card-wrapper1">
+              <div class="card-item" id="besMovieimg_1"></div>
+              <div class="card-item" id="besMovieimg_2"></div>
+              <div class="card-item" id="besMovieimg_3"></div>
+              <div class="card-item" id="besMovieimg_4"></div>
+              <div class="card-item" id="besMovieimg_5"></div>
+              <div class="card-item" id="besMovieimg_6"></div>
+              <div class="card-item" id="besMovieimg_7"></div>
+  
+          </div>
+      </div>
+  
     </div>
-    <br>
-    <h1 style="text-align: center;">Family movies</h1><br>
-    <div class="slideshow-container">
-      <div class="familyMovies">
-        <div id="family_movie_img_1"></div>
-      </div>
+  </div>
 
-      <div class="familyMovies">
-        <div id="family_movie_img_2"></div>
-      </div>
 
-      <div class="familyMovies">
-        <div id="family_movie_img_3"></div>
-      </div>
+  <h1 style="text-align: center;">Animation movies</h1>
+  <div class="main-wrapper">    
+    <div class="wrapper">
+        <button class="arrow prev2"><i class="ri-arrow-left-s-line"></i></button>
+        <button class="arrow next2"><i class="ri-arrow-right-s-line"></i></button>
+        <div class="card-wrapper2">
+              <div class="card-item"></div>
+              <div class="card-item"> </div>
+              <div class="card-item"></div>
+              <div class="card-item"></div>
+              <div class="card-item"></div>
+              <div class="card-item"></div>
+              <div class="card-item"></div>
 
-      <a class="prev" onclick="plusSlides(-1, 1)">&#10094;</a>
-      <a class="next" onclick="plusSlides(1, 1)">&#10095;</a>
+        </div>
     </div>
+
+    </div>
+  </div>
+  <h1 style="text-align: center;">Family movies</h1>
+  <div class="main-wrapper">    
+    <div class="wrapper">
+        <button class="arrow prev3"><i class="ri-arrow-left-s-line"></i></button>
+        <button class="arrow next3"><i class="ri-arrow-right-s-line"></i></button>
+        <div class="card-wrapper3">
+            <div class="card-item"></div>
+            <div class="card-item"></div>
+            <div class="card-item"></div>
+            <div class="card-item"></div>
+            <div class="card-item"></div>
+            <div class="card-item"></div>
+            <div class="card-item"></div>
+
+        </div>
+    </div>
+
+  </div>
+</div>
+
+<h1 style="text-align: center;">Adventure movies</h1>
+<div class="main-wrapper">    
+  <div class="wrapper">
+      <button class="arrow prev4"><i class="ri-arrow-left-s-line"></i></button>
+      <button class="arrow next4"><i class="ri-arrow-right-s-line"></i></button>
+      <div class="card-wrapper4">
+          <div class="card-item"></div>
+          <div class="card-item"></div>
+          <div class="card-item"></div>
+          <div class="card-item"></div>
+          <div class="card-item"></div>
+          <div class="card-item"></div>
+          <div class="card-item"></div>
+
+      </div>
+  </div>
+
+</div>
+</div>
+
+
+
+
+
+
 
 
 
@@ -83,7 +140,7 @@
 
      
 
-</section> 
+
 
 
 

@@ -1,10 +1,11 @@
 * {
     margin: 0;
     padding: 0;
-    
-    
-    
+    box-sizing: border-box    
 }
+
+
+
 .menu-container {
     background-color:silver;
     color: #fff;
@@ -53,7 +54,7 @@ a:hover {
 }
 
 
-button {
+.moreInfo {
     position: absolute;
     width:200px;
     height:70px;
@@ -86,68 +87,159 @@ p {
 
 
 
-* {box-sizing: border-box}
-.mySlides1, .familyMovies {display: none;text-align: center;}
-img {vertical-align: middle;}
 
-/* Slideshow container */
-.slideshow-container {
-  max-width: 60%;
-  position: relative;
-  margin: auto;
-  background-color: #000;
+
+/* slideshow part */
+.main-wrapper {
+  height: 500px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-/* Next & previous buttons */
-.prev, .next {
-  cursor: pointer;
+
+.wrapper {
+  position: relative;
+  max-width: 1200px;
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+}
+.arrow {
   position: absolute;
   top: 50%;
-  width: auto;
-  padding: 16px;
-  margin-top: -22px;
-  color: black;
-  font-weight: bold;
-  font-size: 18px;
-  transition: 0.6s ease;
-  border-radius: 0 3px 3px 0;
-  user-select: none;
-  
+  transform: translateY(-50%);
+  width: 32px;
+  height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  background-color: rgba(0, 0, 0, .5);
+  font-size: 20px;
+  cursor: pointer;
+  border: none;
+  outline: none;
 }
-
-/* Position the "next button" to the right */
-.next {
+.arrow:hover {
+  background-color: rgba(0, 0, 0, .7);
+}
+.arrow.prev1 {
+  left: 0;
+}
+.arrow.next1 {
   right: 0;
-  border-radius: 3px 0 0 3px;
+}
+.arrow.prev2 {
+  left: 0;
+}
+.arrow.next2 {
+  right: 0;
+}
+.arrow.prev3 {
+  left: 0;
+}
+.arrow.next3 {
+  right: 0;
+}
+.arrow.prev4 {
+  left: 0;
+}
+.arrow.next4 {
+  right: 0;
+}
+.card-wrapper1, .card-wrapper2, .card-wrapper3, .card-wrapper4 {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: 280px;
+  overflow-x: auto;
+  padding: 24px;
+  gap: 24px;
+  cursor: grab;
+  scroll-snap-type: x;
+  scroll-padding-inline: 24px;
+  scroll-behavior: smooth;
+  scrollbar-width: none;
+}
+.card-wrapper1::-webkit-scrollbar {
+  display: none;
+}
+.card-wrapper1.grab {
+  cursor: grabbing;
+  user-select: none;
+  scroll-snap-type: none;
+  scroll-behavior: auto;
+}
+.card-wrapper2::-webkit-scrollbar {
+  display: none;
+}
+.card-wrapper2.grab {
+  cursor: grabbing;
+  user-select: none;
+  scroll-snap-type: none;
+  scroll-behavior: auto;
+}
+.card-wrapper3::-webkit-scrollbar {
+  display: none;
+}
+.card-wrapper3.grab {
+  cursor: grabbing;
+  user-select: none;
+  scroll-snap-type: none;
+  scroll-behavior: auto;
+}
+.card-wrapper4::-webkit-scrollbar {
+  display: none;
+}
+.card-wrapper4.grab {
+  cursor: grabbing;
+  user-select: none;
+  scroll-snap-type: none;
+  scroll-behavior: auto;
+}
+.card-item {
+  scroll-snap-align: start;
+  border-radius: 6px;
+  overflow: hidden;
+  box-shadow: 8px 8px 24px rgba(0, 0, 0, .1);
+}
+.card-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
-/* On hover, add a grey background color */
-.prev:hover, .next:hover {
-  background-color: #f1f1f1;
-  color: black;
+@media screen and (max-width: 575px) {
+  .arrow {
+      display: none;
+  }
+  .card-wrapper1, .card-wrapper2 {
+      margin-left: -16px;
+      width: 100vw;
+  }
 }
 
 
 
 
-
-
-/* The Modal (background) */
+/* modal part */
 .modal {
-    display: none; /* Hidden by default */
-    position: fixed; /* Stay in place */
-    z-index: 1; /* Sit on top */
-    padding-top: 100px; /* Location of the box */
+    display: none;
+    position: fixed;
+    z-index: 1;
+    padding-top: 100px;
     left: 0;
     top: 0;
-    width: 100%; /* Full width */
-    height: 100%; /* Full height */
-    overflow: auto; /* Enable scroll if needed */
-    background-color: rgb(0,0,0); /* Fallback color */
-    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgb(0,0,0);
+    background-color: rgba(0,0,0,0.4);
   }
   
-  /* Modal Content */
   .modal-content {
     background-color: #fefefe;
     margin: auto;
@@ -157,7 +249,6 @@ img {vertical-align: middle;}
     height: 80%;
   }
   
-  /* The Close Button */
   .close {
     color: #aaaaaa;
     float: right;
