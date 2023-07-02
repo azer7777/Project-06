@@ -1,39 +1,49 @@
 
-async function getData(anyUrl, loadData, loadMovieInfo, index){
+async function getData(anyUrl, loadData, loadMovieInfo, index, nb){
     let response = await fetch(anyUrl);
     let data = await response.json();
-    loadData(data, loadMovieInfo, index);
+    loadData(data, loadMovieInfo, index, nb);
 }
-function getBestMovieUrl(data, loadMovieInfo, index){
-    let bestMovieUrl = data.results[index].url;
-    getData(bestMovieUrl, loadMovieInfo, index);   
+function getBestMovieUrl(data, loadMovieInfo, index, nb){
+    let bestMovieUrl = data.results[index].url;   
+    getData(bestMovieUrl, loadMovieInfo, nb);   
 }
 function loadBestMovieInfo(dataMovie){
     document.getElementById("bestmovieImage").innerHTML = "<img src=" + dataMovie.image_url + "alt='image best movie ' height='450' width='100%'/>";
-    document.getElementById("titleBestMovie").innerHTML = dataMovie.title;
+    document.getElementById("titleBestMovie").innerHTML = dataMovie.original_title;
     document.getElementById("description").innerHTML = dataMovie.description;
 }
 let ratingSortedMoviesUrl = "http://localhost:8000/api/v1/titles/?sort_by=-votes,-imdb_score"
-let familyMoviesUrl = "http://localhost:8000/api/v1/titles/?sort_by=-votes,-imdb_score&genre=animation"
-getData(ratingSortedMoviesUrl, getBestMovieUrl, loadBestMovieInfo, 0);
-getData(ratingSortedMoviesUrl, getBestMovieUrl, loadInfoToModal, 0);
-
-
-ratingSortedMoviesUrl = "http://localhost:8000/api/v1/titles/?sort_by=-votes,-imdb_score"
-let n = 2
-for (let i=0; i<4; i++){
-    if (n == 5){
-      ratingSortedMoviesUrl = "http://localhost:8000/api/v1/titles/?page=2&sort_by=-votes%2C-imdb_score"
-      n = 0
+let animationMoviesUrl = "http://localhost:8000/api/v1/titles/?sort_by=-votes,-imdb_score&genre=animation"
+let familyMoviesUrl = "http://localhost:8000/api/v1/titles/?sort_by=-votes,-imdb_score&genre=family"
+let adventureMoviesUrl = "http://localhost:8000/api/v1/titles/?sort_by=-votes,-imdb_score&genre=adventure"
+let index = 0
+getData(ratingSortedMoviesUrl, getBestMovieUrl, loadBestMovieInfo, index);
+getData(ratingSortedMoviesUrl, getBestMovieUrl, loadInfoToModal, index)
+let imageNb = 0
+for (let i=1; i<8; i++){    
+    if (i >= 5){
+      ratingSortedMoviesUrl = ratingSortedMoviesUrl + "&page=2";
+      animationMoviesUrl = animationMoviesUrl + "&page=2";
+      familyMoviesUrl = familyMoviesUrl + "&page=2";
+      adventureMoviesUrl = adventureMoviesUrl + "&page=2";     
+      getData(ratingSortedMoviesUrl, getBestMovieUrl, loadBestMoviesImg, imageNb, i);
+      getData(animationMoviesUrl, getBestMovieUrl, loadAnimationMoviesImg, imageNb, i);
+      getData(familyMoviesUrl, getBestMovieUrl, loadFamilyMoviesImg, imageNb, i);
+      getData(adventureMoviesUrl, getBestMovieUrl, loadAdventureMoviesImg, imageNb, i);
+      imageNb++
+    } else {
+      getData(ratingSortedMoviesUrl, getBestMovieUrl, loadBestMoviesImg, i, i);
+      getData(animationMoviesUrl, getBestMovieUrl, loadAnimationMoviesImg, i, i);
+      getData(familyMoviesUrl, getBestMovieUrl, loadFamilyMoviesImg, i, i);
+      getData(adventureMoviesUrl, getBestMovieUrl, loadAdventureMoviesImg, i, i);
     }
-    getData(ratingSortedMoviesUrl, getBestMovieUrl, loadMoviesImg2, n);
-    n ++
 }
 
 
 function loadInfoToModal(dataMovie){
     document.getElementById("imageMovie").innerHTML = "<img src=" + dataMovie.image_url + "alt='image best movie '/>";
-    document.getElementById("title").innerHTML = dataMovie.title;
+    document.getElementById("title").innerHTML = dataMovie.original_title;
     document.getElementById("genres").innerHTML = "Genres : " + dataMovie.genres;   
     document.getElementById("datePublished").innerHTML = "Date published : " + dataMovie.date_published;
     document.getElementById("rated").innerHTML = "Rated : " + dataMovie.rated;
@@ -46,28 +56,19 @@ function loadInfoToModal(dataMovie){
     document.getElementById("longDescription").innerHTML = "Long description : " + dataMovie.long_description;
 }
 
-function loadMoviesImg1(dataMovie, nb){ 
+function loadBestMoviesImg(dataMovie, nb){ 
   document.getElementById("besMovieimg_" + nb).innerHTML = "<img src=" + dataMovie.image_url + "alt='movie image '/>";
+  getModal("besMovieimg_" + nb) 
 } 
-function loadMoviesImg2(dataMovie){  
-    const sectionslideshow = document.getElementById("bestRatedMovies_2");
-    const imageElement = document.createElement("img");
-    imageElement.src = dataMovie.image_url;
-    sectionslideshow.appendChild(imageElement);
-}
-function loadMoviesImg3(dataMovie){  
-    const sectionslideshow = document.getElementById("bestRatedMovies_3");
-    const imageElement = document.createElement("img");
-    imageElement.src = dataMovie.image_url;
-    sectionslideshow.appendChild(imageElement);
-}
-function loadMoviesImg4(dataMovie){  
-    const sectionslideshow = document.getElementById("bestRatedMovies_4");
-    const imageElement = document.createElement("img");
-    imageElement.src = dataMovie.image_url;
-    sectionslideshow.appendChild(imageElement);
-}
-
+function loadAnimationMoviesImg(dataMovie, nb){ 
+  document.getElementById("animationMovieimg_" + nb).innerHTML = "<img src=" + dataMovie.image_url + "alt='movie image '/>";
+} 
+function loadFamilyMoviesImg(dataMovie, nb){ 
+  document.getElementById("familyMovieimg_" + nb).innerHTML = "<img src=" + dataMovie.image_url + "alt='movie image '/>";
+} 
+function loadAdventureMoviesImg(dataMovie, nb){ 
+  document.getElementById("adventureMovieimg_" + nb).innerHTML = "<img src=" + dataMovie.image_url + "alt='movie image '/>";
+} 
 
 
 
@@ -191,19 +192,19 @@ function  slideshow(className, arrowPrev, arrowNext){
 
 
 
-
-// modal part
+function getModal(idName) {
+  // modal part
 let modal = document.getElementById("myModal");
 
 // Get the button that opens the modal
 let btn = document.getElementById("myBtn");
-let imageMovie = document.getElementById("rated_movie_img_1");
+let imageMovie = document.getElementById(idName);
 
 // Get the <span> element that closes the modal
 let span = document.getElementsByClassName("close")[0];
 
 // When the user clicks the button, open the modal 
-btn.onclick = function() {
+imageMovie.onclick = function() {
   modal.style.display = "block";
 }
 
@@ -218,6 +219,8 @@ window.onclick = function(event) {
     modal.style.display = "none";
   }
 }
+}
+
 
 
 
