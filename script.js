@@ -5,7 +5,7 @@ async function getData(anyUrl, loadData, loadMovieInfo, index, nb){
     loadData(data, loadMovieInfo, index, nb);
 }
 function getBestMovieUrl(data, loadMovieInfo, index, nb){
-    let bestMovieUrl = data.results[index].url;   
+    let bestMovieUrl = data.results[index].url;  
     getData(bestMovieUrl, loadMovieInfo, nb);   
 }
 function loadBestMovieInfo(dataMovie){
@@ -19,7 +19,7 @@ let familyMoviesUrl = "http://localhost:8000/api/v1/titles/?sort_by=-votes,-imdb
 let adventureMoviesUrl = "http://localhost:8000/api/v1/titles/?sort_by=-votes,-imdb_score&genre=adventure"
 let index = 0
 getData(ratingSortedMoviesUrl, getBestMovieUrl, loadBestMovieInfo, index);
-getData(ratingSortedMoviesUrl, getBestMovieUrl, loadInfoToModal, index)
+
 let imageNb = 0
 for (let i=1; i<8; i++){    
     if (i >= 5){
@@ -40,7 +40,6 @@ for (let i=1; i<8; i++){
     }
 }
 
-
 function loadInfoToModal(dataMovie){
     document.getElementById("imageMovie").innerHTML = "<img src=" + dataMovie.image_url + "alt='image best movie '/>";
     document.getElementById("title").innerHTML = dataMovie.original_title;
@@ -58,22 +57,22 @@ function loadInfoToModal(dataMovie){
 
 function loadBestMoviesImg(dataMovie, nb){ 
   document.getElementById("besMovieimg_" + nb).innerHTML = "<img src=" + dataMovie.image_url + "alt='movie image '/>";
-  getModal("besMovieimg_" + nb) 
+  getModal(dataMovie, "besMovieimg_" + nb) 
 } 
 function loadAnimationMoviesImg(dataMovie, nb){ 
   document.getElementById("animationMovieimg_" + nb).innerHTML = "<img src=" + dataMovie.image_url + "alt='movie image '/>";
+  getModal(dataMovie, "animationMovieimg_" + nb)
 } 
-function loadFamilyMoviesImg(dataMovie, nb){ 
+function loadFamilyMoviesImg(dataMovie , nb){ 
   document.getElementById("familyMovieimg_" + nb).innerHTML = "<img src=" + dataMovie.image_url + "alt='movie image '/>";
+  getModal(dataMovie, "familyMovieimg_" + nb)
 } 
 function loadAdventureMoviesImg(dataMovie, nb){ 
   document.getElementById("adventureMovieimg_" + nb).innerHTML = "<img src=" + dataMovie.image_url + "alt='movie image '/>";
+  getModal(dataMovie, "adventureMovieimg_" + nb)
 } 
 
-
-
 // slideshow part
-
 let arrowPrev1 = document.querySelector('.arrow.prev1')
 let arrowNext1 = document.querySelector('.arrow.next1')
 let arrowPrev2 = document.querySelector('.arrow.prev2')
@@ -184,35 +183,27 @@ function  slideshow(className, arrowPrev, arrowNext){
   }
 }
 
-
-
-
-
-
-
-
-
-function getModal(idName) {
-  // modal part
+// modal part
+function getModal(dataMovie, idName) {  
 let modal = document.getElementById("myModal");
-
-// Get the button that opens the modal
+// Get the elements that opens the modal
 let btn = document.getElementById("myBtn");
 let imageMovie = document.getElementById(idName);
-
 // Get the <span> element that closes the modal
 let span = document.getElementsByClassName("close")[0];
-
 // When the user clicks the button, open the modal 
-imageMovie.onclick = function() {
+imageMovie.onclick = function() { 
+  loadInfoToModal(dataMovie)
   modal.style.display = "block";
 }
-
+btn.onclick = function() { 
+  getData("http://localhost:8000/api/v1/titles/?sort_by=-votes,-imdb_score", getBestMovieUrl, loadInfoToModal, 0);
+  modal.style.display = "block";
+}
 // When the user clicks on <span> (x), close the modal
 span.onclick = function() {
   modal.style.display = "none";
 }
-
 // When the user clicks anywhere outside of the modal, close it
 window.onclick = function(event) {
   if (event.target == modal) {

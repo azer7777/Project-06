@@ -4,16 +4,13 @@
     box-sizing: border-box    
 }
 
-
-
 .menu-container {
     background-color:silver;
     color: #fff;
     padding: 2% 0;
     display:flex;
     justify-content: center;
-    
-    
+       
 }
 .menu {
     border: 0;
@@ -84,11 +81,6 @@ p {
   font-size: 20px;
 }
 
-
-
-
-
-
 /* slideshow part */
 .main-wrapper {
   height: 500px;
@@ -96,7 +88,6 @@ p {
   align-items: center;
   justify-content: center;
 }
-
 
 .wrapper {
   position: relative;
@@ -221,8 +212,6 @@ p {
       width: 100vw;
   }
 }
-
-
 
 
 /* modal part */
