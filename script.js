@@ -12,6 +12,7 @@ function loadBestMovieInfo(dataMovie){
     document.getElementById("bestmovieImage").innerHTML = "<img src=" + dataMovie.image_url + "alt='image best movie ' height='450' width='100%'/>";
     document.getElementById("titleBestMovie").innerHTML = dataMovie.original_title;
     document.getElementById("description").innerHTML = dataMovie.description;
+    getModal(dataMovie, "btn");
 }
 let ratingSortedMoviesUrl = "http://localhost:8000/api/v1/titles/?sort_by=-votes,-imdb_score"
 let animationMoviesUrl = "http://localhost:8000/api/v1/titles/?sort_by=-votes,-imdb_score&genre=animation"
@@ -187,17 +188,12 @@ function  slideshow(className, arrowPrev, arrowNext){
 function getModal(dataMovie, idName) {  
 let modal = document.getElementById("myModal");
 // Get the elements that opens the modal
-let btn = document.getElementById("myBtn");
-let imageMovie = document.getElementById(idName);
+let imageOrButton = document.getElementById(idName);
 // Get the <span> element that closes the modal
 let span = document.getElementsByClassName("close")[0];
 // When the user clicks the button, open the modal 
-imageMovie.onclick = function() { 
+imageOrButton.onclick = function() { 
   loadInfoToModal(dataMovie)
-  modal.style.display = "block";
-}
-btn.onclick = function() { 
-  getData("http://localhost:8000/api/v1/titles/?sort_by=-votes,-imdb_score", getBestMovieUrl, loadInfoToModal, 0);
   modal.style.display = "block";
 }
 // When the user clicks on <span> (x), close the modal
