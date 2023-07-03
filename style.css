@@ -93,7 +93,7 @@ p {
   position: relative;
   max-width: 1200px;
   width: 100%;
-  min-height: 100vh;
+  min-height: 50vh;
   display: flex;
   align-items: center;
   justify-content: center;
