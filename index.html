@@ -7,25 +7,29 @@
     <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <script src="script.js" async></script>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     
 </head>
 <body>
-  <div class="menu-container">
+  <header class="menu-container">
     <div class="menu">
         <p class="logo">JustStreamIt</p>
         <a href="index.html">Home</a>
         <p>Categories</p>
 
-    </div>
-  </div>
-
+    </div> 
+  </header>
+  
+<figure>
     <div id="bestmovieImage"></div>
-    <h1 id="titleBestMovie"></h1>
+    <div id="titleBestMovie"></div>
     <button class="moreInfo" id="btn">More info</button>
     <p id="description"></p>
     <br>
+</figure>
+
+<main>
 
     <h1 style="text-align: center;">Best rated movies</h1>
     <div class="main-wrapper">    
@@ -45,7 +49,7 @@
       </div>
   
     </div>
-  </div>
+
 
   <h1 style="text-align: center;">Animation movies</h1>
   <div class="main-wrapper">    
@@ -64,7 +68,7 @@
         </div>
     </div>
     </div>
-  </div>
+
   <h1 style="text-align: center;">Family movies</h1>
   <div class="main-wrapper">    
     <div class="wrapper">
@@ -83,7 +87,7 @@
     </div>
 
   </div>
-</div>
+
 
 <h1 style="text-align: center;">Adventure movies</h1>
 <div class="main-wrapper">    
@@ -103,13 +107,13 @@
   </div>
 
 </div>
-</div>
+</main>
 
-    <div id="myModal" class="modal">
+    <aside id="myModal" class="modal">
       <div class="modal-content">
         <span class="close">&times;</span>
         <div id="imageMovie"></div>
-        <h1 id="title"></h1><br>
+        <div id="title"></div><br>
         <p id="genres"></p>
         <P id="datePublished"></P>
         <P id="rated"></P>
@@ -121,7 +125,7 @@
         <P id="worldwideGrossIncome">worldwideGrossIncome</P>
         <P id="longDescription">longDescription</P>       
       </div>
-    </div>
+    </aside>
 
 </body>
 

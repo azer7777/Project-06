@@ -20,13 +20,18 @@
     margin-right: 5%;
     font-size: 20px;    
     font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-    .logo {
+
+    
+}
+
+
+.logo {
         font-size: 30px;
         left: 10px;
         position: absolute;
-    }
-    
 }
+
+
 a:link {
     color:#fff;
     text-decoration: none;
@@ -238,7 +243,9 @@ p {
     height: 80%;
     overflow-y: scroll;
   }
-  
+  #title {
+    font-size: 35px;    
+  }
   .close {
     color: #aaaaaa;
     float: right;
